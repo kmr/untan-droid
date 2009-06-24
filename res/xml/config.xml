@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:key="utut_config">
+    <PreferenceCategory android:title="@string/config_twit_category_title">
+	    <CheckBoxPreference
+	            android:key="config_twit_enabled"
+	            android:title="@string/config_twit_enabled_title" />
+	    <EditTextPreference
+	            android:key="config_twit_id"
+	            android:title="@string/config_twit_id_title"
+	            android:dependency="config_twit_enabled" />
+	    <EditTextPreference
+	            android:key="config_twit_password"
+	            android:title="@string/config_twit_password_title"
+	            android:dependency="config_twit_enabled" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/config_sound_category_title">
+	    <ListPreference
+	            android:key="config_sound_file"
+	            android:title="@string/config_sound_file_title"
+	            android:entries="@array/config_sound_files"
+	            android:entryValues="@array/config_sound_files_values"
+	            android:defaultValue="@string/config_sound_files_default_value" />
+    </PreferenceCategory>
+</PreferenceScreen>

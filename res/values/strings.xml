@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Untan-Droid</string>
+<string name="config_sound_files_default_value">castanet.wav</string>
+<string name="config_sound_file_title">Sound</string>
+<string name="config_sound_category_title">Sound setting</string>
+<string name="config_twit_id_title">id</string>
+<string name="config_twit_password_title">password</string>
+<string name="config_twit_enabled_title">Enable Twit</string>
+<string name="config_twit_category_title">Twitter settings</string>
+<string name="config_setting_title">Settings</string>
+
+
+
+
+
+<color name="cal_text_color">#FFFFFF</color>
+</resources>

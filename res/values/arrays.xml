@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+<string-array name="config_sound_files"><item>Castanet</item>
+<item>Bomb</item>
+<item>Drum</item>
+<item>Nya-</item>
+<item>Tarai</item>
+</string-array>
+<string-array name="config_sound_files_values"><item>castanet</item>
+<item>bomb</item>
+<item>drum</item>
+<item>nya</item>
+<item>tarai</item>
+</string-array>
+</resources>

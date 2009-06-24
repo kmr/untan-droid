@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="components">
+<item>media_controller,net.necomimi.android.utut.MediaController,net.necomimi.android.utut.MediaControllerImpl</item>
+<item>twit,net.necomimi.android.utut.TwitClient,net.necomimi.android.utut.TwitClientImpl</item>
+<item>shake_controller,net.necomimi.android.utut.ShakeController,net.necomimi.android.utut.ShakeControllerImpl</item>
+<item>renderer,net.necomimi.android.utut.Renderer,net.necomimi.android.utut.UtutRenderer</item>
+</string-array>
+</resources>
