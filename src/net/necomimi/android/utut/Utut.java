@@ -31,7 +31,7 @@ public class Utut extends Activity implements SensorEventListener,
 	private final String TWIT = "twit";
 	private final String SHAKE_CONTROLLER = "shake_controller";
 	private final String RENDERER = "renderer";
-	private static final int MEDIA_PLAY_INTERVAL = 500;
+	private static final int MEDIA_PLAY_INTERVAL = 200;
     private static final int SUB_FORM_NORM = 0;
 	private static final DecimalFormat CAL_PATTERN = new DecimalFormat("##0.0");
     
@@ -42,7 +42,7 @@ public class Utut extends Activity implements SensorEventListener,
 	private TwitClient twit;
 	private ShakeController shakeController;
 	private Renderer renderer;
-    private boolean playing = false;
+    private int playing = 0;
     private long previousPlayTime = 0L;
     private boolean twitEnabled = false;
     	
@@ -256,10 +256,12 @@ public class Utut extends Activity implements SensorEventListener,
 	 * @throws RenderException 
 	 */
 	private boolean toggleUt() throws TwitException, RenderException {
-		if (!this.playing || System.currentTimeMillis() - this.previousPlayTime > MEDIA_PLAY_INTERVAL) {
+		if (System.currentTimeMillis() - this.previousPlayTime > MEDIA_PLAY_INTERVAL) {
+			synchronized(this) {
+				this.playing++;
+			}
 			// play sound and switch image to tan.
 			this.previousPlayTime = System.currentTimeMillis();
-			this.playing = true;
 	        this.renderer.changeImage(R.raw.tan);
 			this.media.play();
 			return true;
@@ -271,7 +273,10 @@ public class Utut extends Activity implements SensorEventListener,
 	 * Called when media is completed.
 	 */
 	public void onCompletion(MediaPlayer mp) {
-		if (this.playing) {
+		if (this.playing >= 1) {
+			synchronized(this) {
+				this.playing--;
+			}
 			// Switch image to un.
 			try {
 				this.renderer.changeImage(R.raw.un);
@@ -280,7 +285,6 @@ public class Utut extends Activity implements SensorEventListener,
 				Log.e(Utut.class.getName() + ".onCompletion", "Display resource error.", e);
 				finish();
 			}
-			this.playing = false;
 		}
 	}
 	
