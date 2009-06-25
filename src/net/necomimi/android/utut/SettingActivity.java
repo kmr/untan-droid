@@ -13,11 +13,13 @@ public class SettingActivity extends PreferenceActivity implements
 	public static final String CONFIG_TWIT_ENABLED_KEY = "config_twit_enabled";
 	public static final String CONFIG_TWIT_ID_KEY = "config_twit_id";
 	public static final String CONFIG_TWIT_PASSWORD_KEY = "config_twit_password";
+	public static final String CONFIG_TWIT_PREFIX_KEY = "config_twit_prefix";
 	public static final String CONFIG_SOUND_KEY = "config_sound_file";
 	public static final String CONFIG_SOUND_DEFAULT = "castanet";
 	private static final String MASK_TEXT = "*****";
 	private Preference prefTwitId;
 	private Preference prefTwitPassword;
+	private Preference prefTwitPrefix;
 	private Preference prefSound;
 	
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,9 @@ public class SettingActivity extends PreferenceActivity implements
 		this.prefTwitId.setSummary(pref.getString(CONFIG_TWIT_ID_KEY, EMPTY));
 		this.prefTwitPassword = findPreference(CONFIG_TWIT_PASSWORD_KEY);
 		this.prefTwitPassword.setOnPreferenceChangeListener(this);
+        this.prefTwitPrefix = findPreference(CONFIG_TWIT_PREFIX_KEY);
+		this.prefTwitPrefix.setOnPreferenceChangeListener(this);
+		this.prefTwitPrefix.setSummary(pref.getString(CONFIG_TWIT_PREFIX_KEY, EMPTY));
 		this.prefSound = findPreference(CONFIG_SOUND_KEY);
 		this.prefSound.setOnPreferenceChangeListener(this);
 		this.prefSound.setSummary(pref.getString(CONFIG_SOUND_KEY, EMPTY));
@@ -56,6 +61,8 @@ public class SettingActivity extends PreferenceActivity implements
 			this.prefTwitPassword.setSummary(MASK_TEXT);			
 		} else if (CONFIG_SOUND_KEY.equals(preference.getKey())) {
 			this.prefSound.setSummary((String)newValue);
+		} else if (CONFIG_TWIT_PREFIX_KEY.equals(preference.getKey())) {
+			this.prefTwitPrefix.setSummary((String)newValue);
 		}
 		return true;
 	}

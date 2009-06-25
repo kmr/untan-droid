@@ -48,6 +48,7 @@ public final class R {
         public static final int config_twit_enabled_title=0x7f070006;
         public static final int config_twit_id_title=0x7f070004;
         public static final int config_twit_password_title=0x7f070005;
+        public static final int config_twit_prefix_title=0x7f070009;
     }
     public static final class xml {
         public static final int config=0x7f040000;

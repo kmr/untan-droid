@@ -32,15 +32,11 @@ public class Utut extends Activity implements SensorEventListener,
 	private final String SHAKE_CONTROLLER = "shake_controller";
 	private final String RENDERER = "renderer";
 	private static final int MEDIA_PLAY_INTERVAL = 500;
-//    private static final String MESSAGE_UNTN = "うんたん!";
     private static final int SUB_FORM_NORM = 0;
-//	private static final String CAL_PATTERN = "{0,number,#.#}";
 	private static final DecimalFormat CAL_PATTERN = new DecimalFormat("##0.0");
     
 	private SimpleContainer container;
 	private TextView accelerometerValue;
-//	private TextView calValue;
-//	private ImageView mainImage;
 	private SensorManager sensorManager;
 	private MediaController media;
 	private TwitClient twit;
@@ -69,16 +65,9 @@ public class Utut extends Activity implements SensorEventListener,
         // get views        
         this.accelerometerValue = (TextView)findViewById(R.id.accelerometer_value);
         this.accelerometerValue.setText(Float.toString(this.shakeController.getCurrentAccelerationValue()));
-//        this.calValue = (TextView)findViewById(R.id.cal_value);
-//        this.calValue.setText(MessageFormat.format(CAL_PATTERN, new Object[]{this.shakeController.getUsedCal()}));
-        //        this.mainImage = (ImageView)findViewById(R.id.main_image);
-//      this.mainImage.setImageResource(R.raw.un);
         try {
-//			this.renderer.changeCalText(MessageFormat.format(CAL_PATTERN, new Object[]{this.shakeController.getUsedCal()}));
 			this.renderer.changeCalText(CAL_PATTERN.format(this.shakeController.getUsedCal()));
 			this.renderer.changeImage(R.raw.un);
-//			addContentView((View)this.renderer, new ViewGroup.LayoutParams(
-//					ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 		} catch (RenderException e) {
 			// error abort.
 			Log.e(Utut.class.getName() + ".onCreate", "Preference load error", e);
@@ -157,11 +146,7 @@ public class Utut extends Activity implements SensorEventListener,
             accelerometerValue.setText(Float.toString(
             		this.shakeController.getCurrentAccelerationValue()));
             if (shaked) {
-//    			this.calValue.setText(MessageFormat.format(CAL_PATTERN,
-//    					new Object[]{this.shakeController.getUsedCal()}));
 				try {
-//					this.renderer.changeCalText(MessageFormat.format(CAL_PATTERN,
-//							new Object[]{this.shakeController.getUsedCal()}));
 					this.renderer.changeCalText(CAL_PATTERN.format(this.shakeController.getUsedCal()));
 					twitUntn();
 					toggleUt();
@@ -232,8 +217,9 @@ public class Utut extends Activity implements SensorEventListener,
 		if (pref.getBoolean(SettingActivity.CONFIG_TWIT_ENABLED_KEY, false)) {
 			String id = pref.getString(SettingActivity.CONFIG_TWIT_ID_KEY, EMPTY);
 			String password = pref.getString(SettingActivity.CONFIG_TWIT_PASSWORD_KEY, EMPTY);
+			String prefix = pref.getString(SettingActivity.CONFIG_TWIT_PREFIX_KEY, EMPTY);
 			if (!(EMPTY.equals(id) || EMPTY.equals(password))) {
-				enableTwit(id, password);
+				enableTwit(id, password, prefix);
 			}
 		} else {
 			disableTwit();
@@ -274,7 +260,6 @@ public class Utut extends Activity implements SensorEventListener,
 			// play sound and switch image to tan.
 			this.previousPlayTime = System.currentTimeMillis();
 			this.playing = true;
-//	        this.mainImage.setImageResource(R.raw.tan);
 	        this.renderer.changeImage(R.raw.tan);
 			this.media.play();
 			return true;
@@ -288,7 +273,6 @@ public class Utut extends Activity implements SensorEventListener,
 	public void onCompletion(MediaPlayer mp) {
 		if (this.playing) {
 			// Switch image to un.
-//			this.mainImage.setImageResource(R.raw.un);
 			try {
 				this.renderer.changeImage(R.raw.un);
 			} catch (RenderException e) {
@@ -300,12 +284,11 @@ public class Utut extends Activity implements SensorEventListener,
 		}
 	}
 	
-	private void enableTwit(String id, String password) throws ComponentInitializeException {
+	private void enableTwit(String id, String password, String prefix) throws ComponentInitializeException {
 		if (null == this.twit) {
 			this.twit = (TwitClient) this.container.getConponent(TWIT);
 		}
-		this.twit.init(id, password);
-//		System.out.println("Twit initialize: " + id + "/" + password);
+		this.twit.init(id, password, prefix);
 		this.twitEnabled = true;
 	}
 	

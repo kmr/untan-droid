@@ -15,4 +15,5 @@
 
 
 <color name="cal_text_color">#FFFFFF</color>
+<string name="config_twit_prefix_title">Tweet to</string>
 </resources>

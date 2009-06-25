@@ -14,7 +14,8 @@
 	            android:key="config_twit_password"
 	            android:title="@string/config_twit_password_title"
 	            android:dependency="config_twit_enabled" />
-    </PreferenceCategory>
+    <EditTextPreference android:key="config_twit_prefix" android:title="@string/config_twit_prefix_title" android:dependency="config_twit_enabled"></EditTextPreference>
+</PreferenceCategory>
     <PreferenceCategory android:title="@string/config_sound_category_title">
 	    <ListPreference
 	            android:key="config_sound_file"

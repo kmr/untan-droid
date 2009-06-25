@@ -1,32 +1,25 @@
 package net.necomimi.android.utut;
 
-//import net.unto.twitter.Api;
 import android.util.Log;
-//import twitter4j.AsyncTwitter;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
 public class TwitClientImpl implements TwitClient {
+	private static final String BLANK = " ";
 	private Twitter twitter;
-//	private Api twitter;
+	private String prefix;
 	
 	public TwitClientImpl() {
 	}
 
-	public void init(String id, String password) {
-//		Api api = Api.builder().username(id).password(password).build();
+	public void init(String id, String password, String prefix) {
 		this.twitter = new Twitter(id, password);
+		this.prefix = prefix;
 	}
 	
 	public void twit(String message) throws TwitException {
-		TwitAgent agent = new TwitAgent(message);
+		TwitAgent agent = new TwitAgent(this.prefix + BLANK + message);
 		agent.start();
-//		try {
-//			this.twitter.updateStatus(message);
-////			this.twitter.updateStatus(message).build().post();
-//		} catch (TwitterException e) {
-//			throw new TwitException(e.getMessage());
-//		}
 	}
 	
 	private class TwitAgent extends Thread {

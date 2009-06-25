@@ -50,13 +50,8 @@ public class ShakeControllerImpl implements ShakeController {
         		// accept shaked!
     			this.usedCal += CAL_PER_SHAKE;
 //    			this.calValue.setText(MessageFormat.format(CAL_PATTERN, new Object[]{this.used_cal}));
-//            	try {
-//					toggleUt();
     			this.shaking = false;
             	return true;
-//				} catch (TwitException e) {
-//					// TODO: log > Ignore
-//				}
             }
         }
         return false;
