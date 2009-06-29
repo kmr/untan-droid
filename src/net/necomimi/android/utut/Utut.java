@@ -302,7 +302,7 @@ public class Utut extends Activity implements SensorEventListener,
 	
 	private void twitUntn() throws TwitException {
 		if (this.twitEnabled) {
-			this.twit.twit(YUNOTTI + this.shakeController.getUsedCal() + MOETA);
+			this.twit.twit(YUNOTTI + CAL_PATTERN.format(this.shakeController.getUsedCal()) + MOETA);
 		}
 	}
 	
